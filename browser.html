@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>uwogylu - Browser Info</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="browser-page">
+    <!-- Видео, отображающееся на фоне -->
+    <video autoplay muted loop id="video-background" playsinline>
+        <source src="media/background.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+    
+    <div class="container">
+        <div class="content-box slide-in">
+            <h1>Browser Information</h1>
+
+            <!-- Где будет выводиться информация, заполненная JS -->
+            <div id="browser-details" class="browser-info">
+                <!-- JavaScript заполнит это -->
+            </div>
+
+            <div class="button-container">
+                <a href="index.html" class="btn-hover">Back to Main</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js" defer></script>
+</body>
+</html>
