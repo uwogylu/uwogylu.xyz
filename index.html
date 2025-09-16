@@ -1,28 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>uwogylu - Disclaimer</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uwogylu | cybersecurity specialist</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="disclaimer-page">
-    <main class="container">
-        <section class="content-box pulse">
-            <article class="disclaimer warning-pulse" role="alert">
-                <h2>Warning</h2>
-                <p>
-                    If you suffer from epilepsy or are sensitive to flashing lights, please close this website immediately. Viewer discretion is advised.
-                </p>
-                <p id="redirect-timer">You will be automatically redirected in 5 seconds...</p>
-            </article>
-            <h1 class="glitch">uwogylu digital space</h1>
-            <div class="button-container">
-                <a href="main.html" class="btn-hover">enter</a>
-                <button onclick="exitSite()" class="btn-hover">exit</button>
-            </div>
-        </section>
-    </main>
-    <script src="js/script.js" defer></script>
+<body>
+    <video id="video-background" autoplay muted loop>
+        <source src="media/background.mp4" type="video/mp4">
+        your browser does not support the video tag.
+    </video>
+    
+    <div class="container">
+        <header>
+            <div class="logo" id="typewriter"></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link active">home</a></li>
+                    <li><a href="browser.html" class="nav-link">browser info</a></li>
+                    <li><a href="links.html" class="nav-link">links</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section id="home">
+                <div class="home-content">
+                    <h1>denis | 15 | russia</h1>
+                    <p>exploring the world of cybersecurity, network analysis and pentesting</p>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h2>cybersecurity</h2>
+                            <p>studying and applying methods of protecting information and networks from cyber attacks.</p>
+                        </div>
+                        <div class="info-card">
+                            <h2>network analysis</h2>
+                            <p>researching network protocols, identifying vulnerabilities and anomalies.</p>
+                        </div>
+                        <div class="info-card">
+                            <h2>penetration testing</h2>
+                            <p>testing systems for penetration to identify and eliminate vulnerabilities.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 uwogylu (denis) | cybersecurity enthusiast</p>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

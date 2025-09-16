@@ -1,31 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>uwogylu - Browser Info</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>browser info | uwogylu</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="browser-page">
-    <video autoplay muted loop id="video-background" playsinline>
-        <source src="media/background.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
+<body>
+    <video id="video-background" autoplay muted loop>
+        <source src="media/background.mp4" type="video/mp4">
+        your browser does not support the video tag.
     </video>
     
     <div class="container">
-        <div class="content-box slide-in">
-            <h1>Browser Information</h1>
-
-            <div id="browser-details" class="browser-info">
-                <!-- JavaScript заполнит это -->
+        <header>
+            <div class="logo">uwogylu</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">home</a></li>
+                    <li><a href="browser.html" class="nav-link active">browser info</a></li>
+                    <li><a href="links.html" class="nav-link">links</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="browser-info">
+                <h2>your browser information</h2>
+                <p><strong>browser name:</strong> <span id="browser-name"></span></p>
+                <p><strong>browser version:</strong> <span id="browser-version"></span></p>
+                <p><strong>operating system:</strong> <span id="os"></span></p>
+                <p><strong>screen resolution:</strong> <span id="screen-resolution"></span></p>
+                <p><strong>user agent:</strong> <span id="user-agent"></span></p>
+                <p><strong>cookies enabled:</strong> <span id="cookies-enabled"></span></p>
+                <p><strong>online status:</strong> <span id="online-status"></span></p>
+                <p><strong>language:</strong> <span id="language"></span></p>
             </div>
-
-            <div class="button-container">
-                <a href="main.html" class="btn-hover">Back to Main</a>
-            </div>
-        </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 uwogylu (denis) | cybersecurity enthusiast</p>
+        </footer>
     </div>
 
-    <script src="js/script.js" defer></script>
+    <script>
+        // browser info detection
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('browser-name').textContent = navigator.appName;
+            document.getElementById('browser-version').textContent = navigator.appVersion;
+            document.getElementById('os').textContent = navigator.platform;
+            document.getElementById('screen-resolution').textContent = `${screen.width}x${screen.height}`;
+            document.getElementById('user-agent').textContent = navigator.userAgent;
+            document.getElementById('cookies-enabled').textContent = navigator.cookieEnabled ? 'yes' : 'no';
+            document.getElementById('online-status').textContent = navigator.onLine ? 'online' : 'offline';
+            document.getElementById('language').textContent = navigator.language;
+        });
+    </script>
 </body>
 </html>

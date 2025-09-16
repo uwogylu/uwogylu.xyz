@@ -1,32 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>uwogylu - Links</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>links | uwogylu</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="links-page">
-    <video autoplay muted loop id="video-background" playsinline>
-        <source src="media/background.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
+<body>
+    <video id="video-background" autoplay muted loop>
+        <source src="media/background.mp4" type="video/mp4">
+        your browser does not support the video tag.
     </video>
     
     <div class="container">
-        <div class="content-box slide-in-right">
-            <h1>Social Networks & Links</h1>
-            
-            <div class="social-links">
-                <a href="https://t.me/uwogylu" target="_blank" rel="noopener noreferrer" class="social-link pulse">Telegram: t.me/uwogylu</a>
-                <a href="https://github.com/uwogylu" target="_blank" rel="noopener noreferrer" class="social-link pulse">GitHub: github.com/uwogylu</a>
-               </div>
-            
-            <div class="button-container">
-                <a href="main.html" class="btn-hover">Back to Main</a>
+        <header>
+            <div class="logo">uwogylu</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">home</a></li>
+                    <li><a href="browser.html" class="nav-link">browser info</a></li>
+                    <li><a href="links.html" class="nav-link active">links</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <h2>my links</h2>
+            <div class="links">
+                <a href="https://t.me/uwogylu" target="_blank" class="link-item">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAwYy02LjYyNyAwLTEyIDUuMzczLTEyIDEyYzAgNi42MjcgNS4zNzMgMTIgMTIgMTJzMTItNS4zNzMgMTItMTJjMC02LjYyNy01LjM3My0xMi0xMi0xMnptNS44OTQgOC4yMWwtMS42ODMgMTUuODI1Yy0uMTExLjYwNC0uNDYuNzk1LS45MjUuNTA2bC00LjQ0NC0zLjI3MmwtMi4xNjUgMS45ODljLS4yNC4yNC0uNDQzLjQ0My0uOTA1LjQ0M2wuMzE2LTQuODg0bDguNDM1LTUuMzc3Yy4zOTEtLjI2MS43NTQtLjEyNC40NTguMTU2eiIvPjwvc3ZnPg==" alt="Telegram">
+                    <span>t.me/uwogylu</span>
+                </a>
+                <a href="https://github.com/uwogylu" target="_blank" class="link-item">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAwYy02LjYyNiAwLTEyIDUuMzczLTEyIDEyYzAgNS4zMDIgMy40MzggOS44IDguMjA3IDExLjM4Ny42LjExMS43OTItLjI2Ljc5Mi0uNTc3di0yLjIzNGMtMy4zMzguNzI2LTQuMDM0LTEuNDE2LTQuMDM0LTEuNDE2LS41NDYtMS4zODctMS4zMzMtMS43NTYtMS4zMzMtMS43NTYtMS4wODktLjc0NS4wODQtLjcyOS4wODQtLjcyOSAxLjIwNS4wODQgMS44MzggMS4yMzcgMS44MzggMS4yMzcgMS4wNyAxLjgzNSAyLjgwOSAxLjMwNSAzLjQ5NS45OTguMTA4LS43NzYuNDE4LTEuMzA1Ljc2LTEuNjA1LTIuNjY1LS4zMDUtNS40NjctMS4zMzQtNS40NjctNS45MzEgMC0xLjMxMS40NjktMi4zODEgMS4yMzYtMy4yMjEtLjEyNC0uMzAzLS41MzUtMS41MjQuMTE3LTMuMTc2IDAgMCAxLjAwOC0uMzIyIDMuMzAxIDEuMjMuOTU3LS4yNjYgMS45OC0uMzk5IDIuOTk5LS40MDQgMS4wMi4wMDUgMi4wNDMuMTM4IDI5Ljk5OS40MDRjMi4yOS0xLjU1MiAzLjI5OC0xLjIzIDMuMjk4LTEuMjMuNjU0IDEuNjU0LjI0NDIgMi44NzQuMzI0IDEuNzY1Ljg0IDIuMzIgMS45MTQgMi4zMiAzLjIyMSAwIDQuNjA5LTIuODA3IDUuNjI0LTUuNDc5IDUuOTIxLjQzMS4zNzEuODIzIDEuMTAyLjgyMyAyLjIxMnYzLjI5MmMwIC4zMTkuMTg3LjY5NC44LjU3NkMyMC41NjUgMjEuNzk1IDI0IDE3LjMgMjQgMTJjMC02LjYyNy01LjM3My0xMi0xMi0xMnoiLz48L3N2Zz4=" alt="GitHub">
+                    <span>github.com/uwogylu</span>
+                </a>
             </div>
-        </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 uwogylu (denis) | cybersecurity enthusiast</p>
+        </footer>
     </div>
-
-    <script src="js/script.js" defer></script>
 </body>
 </html>
