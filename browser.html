@@ -1,80 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>browser info | uwogylu</title>
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uwogylu - Browser Info</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <video id="video-background" autoplay muted loop>
-    <source src="media/background.mp4" type="video/mp4" />
-    your browser does not support the video tag.
-  </video>
+<body class="browser-page">
+    <video autoplay muted loop id="video-background" playsinline>
+        <source src="media/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <div class="container">
+        <div class="content-box slide-in">
+            <h1>Browser Information</h1>
 
-  <div class="container">
-    <header>
-      <div class="logo">uwogylu</div>
-      <nav>
-        <ul>
-          <li><a href="index.html" class="nav-link">home</a></li>
-          <li><a href="browser.html" class="nav-link active">browser info</a></li>
-          <li><a href="links.html" class="nav-link">links</a></li>
-        </ul>
-      </nav>
-    </header>
+            <div id="browser-details" class="browser-info">
+                <!-- JavaScript заполнит это -->
+            </div>
 
-    <main>
-      <div class="browser-info">
-        <h2>your browser information</h2>
-        <p><strong>browser name:</strong> <span id="browser-name"></span></p>
-        <p><strong>browser version:</strong> <span id="browser-version"></span></p>
-        <p><strong>operating system:</strong> <span id="os"></span></p>
-        <p><strong>screen resolution:</strong> <span id="screen-resolution"></span></p>
-        <p><strong>user agent:</strong> <span id="user-agent"></span></p>
-        <p><strong>cookies enabled:</strong> <span id="cookies-enabled"></span></p>
-        <p><strong>online status:</strong> <span id="online-status"></span></p>
-        <p><strong>language:</strong> <span id="language"></span></p>
-      </div>
-    </main>
+            <div class="button-container">
+                <a href="main.html" class="btn-hover">Back to Main</a>
+            </div>
+        </div>
+    </div>
 
-    <footer>
-      <p>&copy; 2025 uwogylu (denis) | cybersecurity enthusiast</p>
-    </footer>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const ua = navigator.userAgent;
-      let browserName = "Unknown";
-      let browserVersion = "Unknown";
-
-      if (ua.indexOf("Firefox") > -1) {
-        browserName = "Mozilla Firefox";
-        browserVersion = ua.match(/Firefox\/([\d\.]+)/)[1];
-      } else if (ua.indexOf("Edg") > -1) {
-        browserName = "Microsoft Edge";
-        browserVersion = ua.match(/Edg\/([\d\.]+)/)[1];
-      } else if (ua.indexOf("OPR") > -1 || ua.indexOf("Opera") > -1) {
-        browserName = "Opera";
-        browserVersion = ua.match(/(Opera|OPR)\/([\d\.]+)/)[2];
-      } else if (ua.indexOf("Chrome") > -1) {
-        browserName = "Google Chrome";
-        browserVersion = ua.match(/Chrome\/([\d\.]+)/)[1];
-      } else if (ua.indexOf("Safari") > -1) {
-        browserName = "Safari";
-        browserVersion = (ua.match(/Version\/([\d\.]+)/) || [])[1] || "Unknown";
-      }
-
-      document.getElementById('browser-name').textContent = browserName;
-      document.getElementById('browser-version').textContent = browserVersion;
-      document.getElementById('os').textContent = navigator.platform;
-      document.getElementById('screen-resolution').textContent = `${screen.width}x${screen.height}`;
-      document.getElementById('user-agent').textContent = ua;
-      document.getElementById('cookies-enabled').textContent = navigator.cookieEnabled ? 'yes' : 'no';
-      document.getElementById('online-status').textContent = navigator.onLine ? 'online' : 'offline';
-      document.getElementById('language').textContent = navigator.language;
-    });
-  </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
