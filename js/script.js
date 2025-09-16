@@ -1,4 +1,3 @@
-// typewriter effect
 document.addEventListener('DOMContentLoaded', function() {
     const text = "uwogylu";
     const typewriter = document.getElementById('typewriter');
