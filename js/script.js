@@ -3,6 +3,34 @@ function exitSite() {
     window.location.href = "https://google.com";
 }
 
+// Функция для таймера перенаправления
+function setupRedirectTimer() {
+    const timerElement = document.getElementById('redirect-timer');
+    if (!timerElement) return;
+    
+    let seconds = 5;
+    const redirectUrl = 'main.html';
+    
+    const countdown = setInterval(() => {
+        seconds--;
+        timerElement.textContent = `You will be automatically redirected in ${seconds} seconds...`;
+        
+        if (seconds <= 0) {
+            clearInterval(countdown);
+            window.location.href = redirectUrl;
+        }
+    }, 1000);
+    
+    // Останавливаем таймер если пользователь нажимает Enter
+    const enterButton = document.querySelector('a[href="main.html"]');
+    if (enterButton) {
+        enterButton.addEventListener('click', () => {
+            clearInterval(countdown);
+            timerElement.style.display = 'none';
+        });
+    }
+}
+
 // Анимация печатной машинки для текста (ника)
 function typeWriter(text, element, speed, callback) {
     let i = 0;
@@ -76,6 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const typewriterElement = document.getElementById('typewriter-text');
     if (typewriterElement) {
         typeWriter('uwogylu', typewriterElement, 200);
+    }
+
+    // Настройка таймера перенаправления для страницы с предупреждением
+    if (document.querySelector('.disclaimer-page')) {
+        setupRedirectTimer();
     }
 
     // Проверка URL для отображения информации о браузере
