@@ -65,9 +65,26 @@ function showBrowserInfo() {
         <p><strong>screen resolution:</strong> ${screen.width} x ${screen.height}</p>
         <p><strong>color depth:</strong> ${screen.colorDepth} bits</p>
         <p><strong>browser name:</strong> ${getBrowserName()}</p>
+        <p><strong>security token:</strong> <span class="e93-symbol">e93</span></p>
     `;
 
     container.innerHTML = infoHtml;
+}
+
+// Случайные эффекты мерцания для элементов
+function addRandomGlitchEffect() {
+    const elements = document.querySelectorAll('h1, h2, p, .social-link');
+    
+    setInterval(() => {
+        if (Math.random() > 0.8) {
+            const randomElement = elements[Math.floor(Math.random() * elements.length)];
+            randomElement.classList.add('glitch');
+            
+            setTimeout(() => {
+                randomElement.classList.remove('glitch');
+            }, 200);
+        }
+    }, 3000);
 }
 
 // Инициализация при загрузке документа
@@ -82,5 +99,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const path = window.location.pathname;
     if (path.endsWith('browser.html') || path.endsWith('browser')) {
         showBrowserInfo();
+    }
+    
+    // Добавляем случайные эффекты мерцания
+    addRandomGlitchEffect();
+    
+    // Добавляем эффект печатной машинки для текста на странице disclaimer
+    if (path.endsWith('index.html') || path.endsWith('/')) {
+        const disclaimerText = document.querySelector('.disclaimer p');
+        if (disclaimerText) {
+            const originalText = disclaimerText.textContent;
+            disclaimerText.textContent = '';
+            typeWriter(originalText, disclaimerText, 50);
+        }
     }
 });
