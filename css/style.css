@@ -1,14 +1,14 @@
-/* Серая загадочная цветовая схема с акцентами e93 */
+/* Цветовая схема, адаптированная под видео фон */
 :root {
-    --main-bg-color: #0a0a0f;
-    --text-color: #cccccc;
-    --accent-color: #e93; /* Оранжево-золотой акцент */
-    --hover-color: #ffaa44;
-    --border-color: #333344;
-    --overlay-color: rgba(20, 20, 30, 0.85);
-    --background-video-opacity: 0.15;
-    --e93-glow: 0 0 10px rgba(238, 153, 51, 0.7);
-    --glow-color: rgba(238, 153, 51, 0.5);
+    --main-bg-color: #000000; /* Черный фон, как в видео */
+    --text-color: #ffffff; /* Белый текст для максимального контраста */
+    --accent-color: #ff6b6b; /* Яркий красный акцент, как в видео */
+    --hover-color: #ff8e8e;
+    --border-color: #444444;
+    --overlay-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный для контента */
+    --background-video-opacity: 0.25; /* Увеличил прозрачность, чтобы контент лучше читался */
+    --e93-glow: 0 0 10px rgba(255, 107, 107, 0.8);
+    --glow-color: rgba(255, 107, 107, 0.5);
     --terminal-green: #00ff00;
     --terminal-blue: #00ffff;
 }
@@ -18,6 +18,11 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Courier New', monospace;
+    /* Отключаем выделение текста для более "системного" вида */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
@@ -26,22 +31,10 @@ body {
     background-color: var(--main-bg-color);
     min-height: 100vh;
     position: relative;
+    /* Убираем градиентный фон, чтобы не конфликтовать с видео */
 }
 
-/* Новый фоновый эффект для версии 3.0 */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 10% 20%, rgba(238, 153, 51, 0.05) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(238, 153, 51, 0.03) 0%, transparent 20%);
-    z-index: -1;
-}
-
+/* Стили для видео фона */
 #video-background {
     position: fixed;
     top: 0;
@@ -51,7 +44,10 @@ body::before {
     z-index: -1;
     opacity: var(--background-video-opacity);
     object-fit: cover;
-    filter: grayscale(100%) contrast(120%) brightness(0.7);
+    /* Убираем фильтры, чтобы видео было чистым, как в оригинале */
+    /* filter: grayscale(100%) contrast(120%) brightness(0.7); */
+    /* Добавляем легкий размытый эффект, если нужно */
+    /* filter: blur(2px); */
 }
 
 .container {
@@ -74,33 +70,16 @@ body::before {
     width: 100%;
     text-align: center;
     backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+    /* Убираем начальную анимацию, она будет запускаться через JS */
     opacity: 0;
-    transform: translateY(-20px);
-    animation: slideUp 1s forwards ease-out;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
 }
 
-.content-box::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-    animation: scanline 3s infinite linear;
-}
-
-.e93-symbol {
-    color: var(--accent-color);
-    font-size: 1.2em;
-    text-shadow: var(--e93-glow);
-    margin: 0 5px;
-    animation: pulse 2s infinite;
-}
-
+/* Новый стиль для заголовков, вдохновленный видео */
 h1, h2 {
     text-transform: lowercase;
     margin-bottom: 20px;
@@ -109,6 +88,14 @@ h1, h2 {
     text-shadow: var(--e93-glow);
     letter-spacing: 2px;
     position: relative;
+    /* Эффект сканирования, как в видео */
+    animation: scanLineText 2s linear infinite;
+}
+
+@keyframes scanLineText {
+    0% { text-shadow: 0 0 5px var(--accent-color); }
+    50% { text-shadow: 0 0 20px var(--accent-color); }
+    100% { text-shadow: 0 0 5px var(--accent-color); }
 }
 
 h1 {
@@ -126,6 +113,14 @@ h1::after {
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
     box-shadow: var(--e93-glow);
+    /* Анимация линии, как в видео */
+    animation: lineScan 3s linear infinite;
+}
+
+@keyframes lineScan {
+    0% { transform: translateX(-50%) scaleX(0); }
+    50% { transform: translateX(-50%) scaleX(1); }
+    100% { transform: translateX(-50%) scaleX(0); }
 }
 
 h2 {
@@ -142,7 +137,7 @@ p {
     position: relative;
 }
 
-/* Новые стили для версии 3.0 */
+/* Стили для кнопок */
 .button-container {
     display: flex;
     justify-content: center;
@@ -151,7 +146,6 @@ p {
     flex-wrap: wrap;
 }
 
-/* Новые стили для кнопок */
 button, .btn-hover {
     background-color: rgba(40, 40, 50, 0.3);
     color: var(--text-color);
@@ -170,6 +164,8 @@ button, .btn-hover {
     position: relative;
     z-index: 1;
     min-width: 150px;
+    /* Добавляем эффект сканирования при наведении */
+    animation: none;
 }
 
 button:hover, .btn-hover:hover {
@@ -179,87 +175,16 @@ button:hover, .btn-hover:hover {
     transform: translateY(-2px);
     box-shadow: var(--e93-glow);
     z-index: 2;
+    /* Анимация при наведении */
+    animation: buttonGlow 0.5s ease-in-out infinite alternate;
 }
 
-button::before, .btn-hover::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(238, 153, 51, 0.2), transparent);
-    transition: left 0.5s;
-    z-index: -1;
+@keyframes buttonGlow {
+    from { box-shadow: 0 0 5px rgba(255, 107, 107, 0.5); }
+    to { box-shadow: 0 0 20px rgba(255, 107, 107, 0.8); }
 }
 
-button:hover::before, .btn-hover:hover::before {
-    left: 100%;
-}
-
-/* Новые стили для социальных ссылок */
-.social-link {
-    color: var(--text-color);
-    text-decoration: none;
-    margin: 15px 0;
-    display: block;
-    transition: all 0.4s ease;
-    font-size: 1rem;
-    padding: 12px 20px;
-    background-color: rgba(30, 30, 40, 0.5);
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-    position: relative;
-    overflow: hidden;
-    text-align: left;
-}
-
-.social-link:hover {
-    color: var(--accent-color);
-    transform: translateX(5px);
-    border-color: var(--accent-color);
-    box-shadow: var(--e93-glow);
-    z-index: 2;
-}
-
-.social-link::before {
-    content: "⟩";
-    position: absolute;
-    left: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    color: var(--accent-color);
-}
-
-.social-link:hover::before {
-    opacity: 1;
-}
-
-/* Новые стили для информации */
-.disclaimer, .browser-info, .profile-info {
-    margin: 20px 0;
-    padding: 15px;
-    background-color: rgba(30, 30, 40, 0.5);
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-    font-size: 0.9rem;
-    position: relative;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.disclaimer::before, .browser-info::before {
-    content: "⚠";
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    background: var(--main-bg-color);
-    padding: 5px;
-    border-radius: 50%;
-    color: var(--accent-color);
-    font-size: 0.8rem;
-}
-
-/* Новые стили для новых элементов */
+/* Эффект для "взлома" */
 .hack-effect {
     animation: hack 0.5s ease-in-out;
     color: #ff0000;
@@ -274,6 +199,19 @@ button:hover::before, .btn-hover:hover::before {
     100% { transform: scale(1); }
 }
 
+/* Информационные блоки */
+.disclaimer, .browser-info, .profile-info {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: rgba(30, 30, 40, 0.5);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Прогресс взлома */
 #hack-progress {
     background: rgba(20, 20, 30, 0.8);
     border: 1px solid var(--accent-color);
@@ -296,7 +234,7 @@ button:hover::before, .btn-hover:hover::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(238, 153, 51, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.3), transparent);
     animation: progress 2s infinite linear;
 }
 
@@ -305,12 +243,7 @@ button:hover::before, .btn-hover:hover::before {
     100% { left: 100%; }
 }
 
-/* Новые анимации */
-@keyframes scanline {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
-}
-
+/* Анимации */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -327,163 +260,12 @@ button:hover::before, .btn-hover:hover::before {
     opacity: 0;
 }
 
-/* Новые эффекты */
+/* Эффекты */
 .broken-element {
     transition: transform 0.1s ease;
 }
 
-/* Эффекты для версии 3.0 */
-@keyframes terminalEffect {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
-.terminal-effect {
-    animation: terminalEffect 0.1s infinite;
-}
-
-/* Новые анимации для версии 3.0 */
-@keyframes terminalBlink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-}
-
-.terminal-blink {
-    animation: terminalBlink 1s infinite;
-}
-
-/* Новые стили для версии 3.0 */
-.content-box::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, transparent 49%, rgba(238, 153, 51, 0.05) 50%, transparent 51%);
-    background-size: 20px 20px;
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* Новые стили для версии 3.0 */
-.profile-info {
-    background: rgba(30, 30, 40, 0.7);
-    border: 1px solid rgba(238, 153, 51, 0.3);
-    border-radius: 8px;
-    padding: 15px;
-    margin: 20px 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.profile-info::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(238, 153, 51, 0.1), transparent);
-    animation: scanline 4s infinite linear;
-    z-index: -1;
-}
-
-.hidden {
-    display: none;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(-20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.02); }
-    100% { transform: scale(1); }
-}
-
-@keyframes warningPulse {
-    0% { box-shadow: 0 0 5px rgba(238, 153, 51, 0.3); }
-    50% { box-shadow: 0 0 20px rgba(238, 153, 51, 0.7); }
-    100% { box-shadow: 0 0 5px rgba(238, 153, 51, 0.3); }
-}
-
-.glitch {
-    animation: glitch 2s infinite;
-    position: relative;
-}
-
-@keyframes glitch {
-    0% {
-        text-shadow: 1px 1px var(--accent-color), -1px -1px #0ff;
-        transform: translate(0);
-    }
-    20% {
-        text-shadow: -2px -2px var(--accent-color), 2px 2px #0ff;
-        transform: translate(2px, -2px);
-    }
-    40% {
-        text-shadow: 2px -2px var(--accent-color), -2px 2px #0ff;
-        transform: translate(-2px, 2px);
-    }
-    60% {
-        text-shadow: -2px 2px var(--accent-color), 2px -2px #0ff;
-        transform: translate(2px, 2px);
-    }
-    80% {
-        text-shadow: 2px 2px var(--accent-color), -2px -2px #0ff;
-        transform: translate(-2px, -2px);
-    }
-    100% {
-        text-shadow: 1px 1px var(--accent-color), -1px -1px #0ff;
-        transform: translate(0);
-    }
-}
-
-.slide-in {
-    animation: slideIn 1s forwards ease-out;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.slide-in-right {
-    animation: slideInRight 1s forwards ease-out;
-}
-
-@keyframes slideInRight {
-    from {
-        transform: translateX(50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
+/* Текстовые эффекты */
 .typewriter {
     overflow: hidden;
     white-space: nowrap;
@@ -516,14 +298,12 @@ button:hover::before, .btn-hover:hover::before {
     animation-delay: 1.2s;
 }
 
-.warning-pulse {
-    animation: warningPulse 3s infinite;
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-.btn-hover:active, .social-link:active {
-    transform: scale(0.98);
-}
-
+/* Водяной знак */
 .e93-watermark {
     position: fixed;
     bottom: 20px;
@@ -541,7 +321,7 @@ button:hover::before, .btn-hover:hover::before {
     color: var(--accent-color);
 }
 
-/* Новые стили для версии 3.0 */
+/* Системный статус */
 .system-status {
     display: flex;
     justify-content: space-between;
@@ -552,40 +332,34 @@ button:hover::before, .btn-hover:hover::before {
 
 .status-item {
     padding: 5px 10px;
-    background: rgba(238, 153, 51, 0.1);
+    background: rgba(255, 107, 107, 0.1);
     border-radius: 4px;
-    border: 1px solid rgba(238, 153, 51, 0.3);
+    border: 1px solid rgba(255, 107, 107, 0.3);
 }
 
-/* Адаптивность для мобильных устройств */
+/* Адаптивность */
 @media (max-width: 768px) {
     .content-box {
         padding: 20px;
         margin: 10px;
     }
-    
     .button-container {
         flex-direction: column;
         gap: 10px;
     }
-    
     h1 {
         font-size: 2rem;
     }
-    
     .typewriter {
         font-size: 2rem;
     }
-    
     .social-link {
         font-size: 0.9rem;
         padding: 10px 15px;
     }
-    
     h1::after {
         width: 70px;
     }
-    
     .status-item {
         font-size: 0.7rem;
         padding: 3px 5px;
@@ -596,31 +370,25 @@ button:hover::before, .btn-hover:hover::before {
     .content-box {
         padding: 15px;
     }
-    
     h1 {
         font-size: 1.7rem;
     }
-    
     .typewriter {
         font-size: 1.7rem;
     }
-    
     p {
         font-size: 0.85rem;
     }
-    
     button, .btn-hover {
         padding: 10px 15px;
         font-size: 0.85rem;
         min-width: 120px;
     }
-    
     .e93-watermark {
         bottom: 10px;
         right: 10px;
         font-size: 0.7rem;
     }
-    
     .system-status {
         flex-direction: column;
         gap: 5px;
