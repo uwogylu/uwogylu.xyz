@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uwo - about Me</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Background container -->
+    <div class="container">
+        <!-- Center content -->
+        <div class="center-content">
+            <!-- Top heading with typewriter effect -->
+            <div class="top-heading">
+                <h1 id="typewriter-main-title">hello, im <span class="highlight-name">uwo</span>!</h1><span id="cursor">|</span>
+            </div>
+            
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-button active" data-tab="info">info</button>
+                <button class="tab-button" data-tab="main">main</button>
+                <button class="tab-button" data-tab="contact">contact</button>
+                <button class="tab-button" data-tab="friends">friends</button>
+                <button class="tab-button" data-tab="browser">browser</button>
+            </div>
+            
+            <!-- Content for each tab -->
+            <div class="tab-content active" id="info-content">
+                <div id="info-text-container">
+                    <p>my name is <span class="highlight-name">uwo&lt;3</span>, im 15 yo.</p>
+                    <p>i value system stability and avoid failures. i dislike repetitive system installations and unstable package downloading behavior.</p>
+                    <p>i just a brave traveler who has finally come home.</p>
+                    <p>fav color: <span class="highlight-green">green</span> <span class="heart-ascii">&lt;3</span></p>
+                    <p>country: russia, city: sarapul</p>
+                    <p>lang i know: english, russian</p>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="main-content">
+                <div id="main-text-container">
+                    <p>currently i use: <span class="distro-fedora">fedora</span></p>
+                    <p>first linux: linux mint</p>
+                    <p>languages: bash, lua, python</p>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="contact-content">
+                <div id="contact-text-container">
+                    <p>contact mee anytime<3</p>
+                    <p>telegram: <a href="https://t.me/uwogylu" target="_blank">@uwogylu</a></p>
+                    <p>gitHub: <a href="https://github.com/uwogylu" target="_blank">github.com/uwogylu</a></p>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="friends-content">
+                <div id="friends-text-container">
+                    <p>i dont have one:(</p>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="browser-content">
+                <div id="browser-text-container">
+                    <p>Browser information will be displayed here</p>
+                    <div id="browser-info">
+                        <p id="browser-name">Browser: </p>
+                        <p id="browser-version">Version: </p>
+                        <p id="user-agent">User Agent: </p>
+                        <p id="platform">Platform: </p>
+                        <p id="cookies-enabled">Cookies: </p>
+                        <p id="javascript-enabled">JavaScript: Enabled</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
