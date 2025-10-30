@@ -35,6 +35,8 @@ function showTab(tabId) {
         typeContactContentAndFadeIn();
     } else if (tabId === 'friends') {
         typeFriendsContentAndFadeIn();
+    } else if (tabId === 'psn') {
+        typePsnContentAndFadeIn();
     } else if (tabId === 'browser') {
         updateBrowserInfo();
     }
@@ -50,26 +52,37 @@ tabButtons.forEach(button => {
 
 // --- Typewriter Effect for Main Title ---
 const mainTitleElement = document.getElementById('typewriter-main-title');
-const fullMainTitle = 'hello, im uwo!';
+const fullMainTitle = 'hello im uwo<3';
 
 // Function to apply typewriter effect to the main title
 function typeMainTitle() {
     let i = 0;
-    mainTitleElement.textContent = ''; // Clear initial content
-    mainTitleElement.style.animation = 'none'; // Reset animation
-    mainTitleElement.style.width = '0'; // Start with 0 width
+    if (mainTitleElement) {
+        mainTitleElement.textContent = ''; // Clear initial content
+        mainTitleElement.style.animation = 'none'; // Reset animation
+        mainTitleElement.style.width = '0'; // Start with 0 width
 
-    const typeWriterInterval = setInterval(() => {
-        if (i < fullMainTitle.length) {
-            mainTitleElement.textContent += fullMainTitle.charAt(i);
-            mainTitleElement.style.width = `${mainTitleElement.scrollWidth}px`;
-            i++;
-        } else {
-            clearInterval(typeWriterInterval);
-            // Once typing is done, start the cursor blink animation
-            document.getElementById('cursor').style.animation = 'blink 1s infinite';
-        }
-    }, 100); // Adjust typing speed (milliseconds per character)
+        const typeWriterInterval = setInterval(() => {
+            if (i < fullMainTitle.length) {
+                let char = fullMainTitle.charAt(i);
+                // Replace '<' with '&lt;' for proper display
+                if (char === '<') {
+                    mainTitleElement.innerHTML += '&lt;';
+                } else {
+                    mainTitleElement.textContent += char;
+                }
+                mainTitleElement.style.width = `${mainTitleElement.scrollWidth}px`;
+                i++;
+            } else {
+                clearInterval(typeWriterInterval);
+                // Once typing is done, start the cursor blink animation
+                const cursor = document.getElementById('cursor');
+                if (cursor) {
+                    cursor.style.animation = 'blink 1s infinite';
+                }
+            }
+        }, 100); // Adjust typing speed (milliseconds per character)
+    }
 }
 
 // Function to get browser information
@@ -113,11 +126,17 @@ function getBrowserInfo() {
 function updateBrowserInfo() {
     const browserInfo = getBrowserInfo();
     
-    document.getElementById('browser-name').innerHTML = `Browser: <span class="browser-info-label">${browserInfo.name}</span>`;
-    document.getElementById('browser-version').innerHTML = `Version: <span class="browser-info-label">${browserInfo.version}</span>`;
-    document.getElementById('user-agent').innerHTML = `User Agent: <span class="browser-info-label">${browserInfo.userAgent}</span>`;
-    document.getElementById('platform').innerHTML = `Platform: <span class="browser-info-label">${browserInfo.platform}</span>`;
-    document.getElementById('cookies-enabled').innerHTML = `Cookies: <span class="browser-info-label">${browserInfo.cookiesEnabled ? 'Enabled' : 'Disabled'}</span>`;
+    const browserNameEl = document.getElementById('browser-name');
+    const browserVersionEl = document.getElementById('browser-version');
+    const userAgentEl = document.getElementById('user-agent');
+    const platformEl = document.getElementById('platform');
+    const cookiesEnabledEl = document.getElementById('cookies-enabled');
+    
+    if (browserNameEl) browserNameEl.innerHTML = `Browser: <span class="browser-info-label">${browserInfo.name}</span>`;
+    if (browserVersionEl) browserVersionEl.innerHTML = `Version: <span class="browser-info-label">${browserInfo.version}</span>`;
+    if (userAgentEl) userAgentEl.innerHTML = `User Agent: <span class="browser-info-label">${browserInfo.userAgent}</span>`;
+    if (platformEl) platformEl.innerHTML = `Platform: <span class="browser-info-label">${browserInfo.platform}</span>`;
+    if (cookiesEnabledEl) cookiesEnabledEl.innerHTML = `Cookies: <span class="browser-info-label">${browserInfo.cookiesEnabled ? 'Enabled' : 'Disabled'}</span>`;
 }
 
 // --- Fade-In for Text Blocks ---
@@ -125,8 +144,9 @@ const mainTextContainer = document.getElementById('main-text-container');
 const infoTextContainer = document.getElementById('info-text-container');
 const contactTextContainer = document.getElementById('contact-text-container');
 const friendsTextContainer = document.getElementById('friends-text-container');
+const psnTextContainer = document.getElementById('psn-text-container');
 
-// Function to fade in the Info content
+// Function to fade in the Info content (now contains about me info)
 function typeInfoContentAndFadeIn() {
     // Only run if the Info tab is currently active
     if (document.querySelector('.tab-button.active').getAttribute('data-tab') === 'info') {
@@ -144,7 +164,7 @@ function typeInfoContentAndFadeIn() {
     }
 }
 
-// Function to fade in the Main content
+// Function to fade in the Main content (now contains system info)
 function typeMainContentAndFadeIn() {
     // Only run if the Main tab is currently active
     if (document.querySelector('.tab-button.active').getAttribute('data-tab') === 'main') {
@@ -198,6 +218,24 @@ function typeFriendsContentAndFadeIn() {
     }
 }
 
+// Function to fade in the PSN content
+function typePsnContentAndFadeIn() {
+    // Only run if the PSN tab is currently active
+    if (document.querySelector('.tab-button.active').getAttribute('data-tab') === 'psn') {
+        // Start fade-in after a short delay
+        setTimeout(() => {
+            // Add fade-in class to all paragraphs inside the container
+            const paragraphs = psnTextContainer.querySelectorAll('p');
+            paragraphs.forEach(p => {
+                p.classList.add('fade-in');
+                // Trigger reflow to ensure the animation starts from the beginning
+                void p.offsetWidth;
+                p.classList.add('appear');
+            });
+        }, 300); // Delay before starting fade-in
+    }
+}
+
 // --- Initialize Effects ---
 // Start the main title typewriter effect when the page loads
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -213,7 +251,7 @@ tabButtons.forEach(button => {
     button.addEventListener('click', () => {
         const tabId = button.getAttribute('data-tab');
         if (tabId === 'info') {
-            // Reset the content before re-fading
+            // Reset the content before re-fading (system info)
             const paragraphs = infoTextContainer.querySelectorAll('p');
             paragraphs.forEach(p => {
                 p.classList.remove('appear');
@@ -224,7 +262,7 @@ tabButtons.forEach(button => {
             // Add a small delay to ensure the content is displayed before fading in
             setTimeout(typeInfoContentAndFadeIn, 10);
         } else if (tabId === 'main') {
-            // Reset the content before re-fading
+            // Reset the content before re-fading (about me info)
             const paragraphs = mainTextContainer.querySelectorAll('p');
             paragraphs.forEach(p => {
                 p.classList.remove('appear');
@@ -256,10 +294,71 @@ tabButtons.forEach(button => {
             });
             // Add a small delay to ensure the content is displayed before fading in
             setTimeout(typeFriendsContentAndFadeIn, 10);
+        } else if (tabId === 'psn') {
+            // Reset the content before re-fading
+            const paragraphs = psnTextContainer.querySelectorAll('p');
+            paragraphs.forEach(p => {
+                p.classList.remove('appear');
+                // Trigger reflow to reset the animation state
+                void p.offsetWidth;
+                p.classList.remove('fade-in');
+            });
+            // Add a small delay to ensure the content is displayed before fading in
+            setTimeout(typePsnContentAndFadeIn, 10);
         } else if (tabId === 'browser') {
             updateBrowserInfo();
         }
     });
 });
 
-console.log("Page loaded with modern 2.1 design");
+// Add interactivity to the fixed cube and player on hover
+const fixedCube = document.querySelector('.fixed-cube');
+if (fixedCube) {
+    fixedCube.addEventListener('mouseenter', () => {
+        fixedCube.style.animationPlayState = 'paused';
+    });
+    
+    fixedCube.addEventListener('mouseleave', () => {
+        fixedCube.style.animationPlayState = 'running';
+    });
+}
+
+// Cycle through status display text
+function cycleStatusText() {
+    const statusDisplay = document.querySelector('.status-display');
+    if (statusDisplay) {
+        const statuses = [
+            "Status: ROGUE △ROGUE △",
+            "Status: ROUGEROUGE", 
+            "Status: FLOWFLOW"
+        ];
+        let currentIndex = 0;
+        
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % statuses.length;
+            statusDisplay.textContent = statuses[currentIndex];
+        }, 2000); // Change every 2 seconds
+    }
+}
+
+// Add beat-synchronized flashing to elements
+function addBeatSyncFlashing() {
+    const elements = document.querySelectorAll('.color-changing, .quick-flash, .long-flash');
+    
+    // Randomly change colors of elements at beat intervals
+    setInterval(() => {
+        const colorChangingElements = document.querySelectorAll('.color-changing');
+        colorChangingElements.forEach(element => {
+            // Randomly change color classes to create swapping effect
+            const hue = Math.floor(Math.random() * 360);
+            element.style.color = `hsl(${hue}, 100%, 50%)`;
+        });
+    }, 500); // Change colors every half second to simulate beat
+}
+
+// Call initialization functions when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    addBeatSyncFlashing();
+});
+
+console.log("Page loaded with optimized design and interactive cube");

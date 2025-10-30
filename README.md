@@ -22,11 +22,14 @@ i know: bash, lua, python
 - sanfranmmm (7:2 o-0)
 
 ## design features
-- checkerboard background pattern
+- optimized responsive design for all devices (200-375 lines of CSS)
 - typewriter effect on the main heading
 - tabbed navigation system
 - glass-morphism UI elements
 - responsive design for different screen sizes
+- 3D holographic cube (inspired by Sol's RNG aura from Roblox)
+- interactive cube with hover effects
+- smooth animations and transitions
 
 ## license
 this project is licensed under the GNU General Public License v3.0
